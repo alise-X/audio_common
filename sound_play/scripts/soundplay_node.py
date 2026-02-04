@@ -396,7 +396,7 @@ class SoundPlayNode(rclpy.node.Node):
             except Exception as e:
                 self.get_logger().error(
                     'Exception in idle_loop: %s' % str(e))
-        self.diagnostics(2)
+        self.diagnostics(0)
 
     def stopdict(self, dict):
         for sound in dict.values():
