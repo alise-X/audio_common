@@ -632,8 +632,11 @@ class SoundPlayNode(rclpy.node.Node):
         data = goal_handle.request.sound_request
         if not self.initialized:
             self.get_logger().error('soundplay_node is not initialized yet.')
+            result = SoundRequestAction.Result()
+            result.playing = False
+            result.stamp = rclpy.duration.Duration(seconds=0).to_msg()
             goal_handle.abort()
-            return
+            return result
         with self.mutex:
             # Force only one sound at a time
             self.stopall()
